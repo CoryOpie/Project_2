@@ -1,19 +1,19 @@
 
-d3.json("/api/v1.0/hairdata").then(function(hairData) {
+d3.json("/api/v1.0/WHR2021").then(function(WHRData) {
 
-  console.log(hairData);
+  console.log(WHRData);
 
-  rock_band = hairData.map(h => h.rockband)
-  num_hits = hairData.map(h => h.num_hits)
+  Ladder_score = WHRData.map(h => h.Ladder_score)
+  Generosity = WHRData.map(h => h.Generosity)
 
-  console.log(rock_band);
-  console.log(num_hits);
+  console.log(Ladder_score);
+  console.log(Generosity);
 
 
   var data = [
     {
-      x: rock_band,
-      y: num_hits,
+      x: Ladder_score,
+      y: Generosity,
       type: 'bar'
     }
   ];
