@@ -54,7 +54,7 @@ def WHR2021():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of hairdata"""
+    """Return a list of World Happiness Report"""
     # Query all passengers
     results = session.query(WHR.Country_name, WHR.Regional_indicator, WHR.Ladder_score, WHR.Healthy_life_expectancy, WHR.Explained_by_Log_GDP_per_capita, 
     WHR.Explained_by_Social_support, WHR.Explained_by_Healthy_life_expectancy, WHR.Explained_by_Freedom_to_make_life_choices,
@@ -65,7 +65,7 @@ def WHR2021():
 
     # Create a dictionary from the row data and append to a list of all_passengers
     WHR_all = []
-    for Ladder_score, Generosity, Explained_by_Log_GDP_per_capita in results:
+    for Country_name, Regional_indicator, Ladder_score, Healthy_life_expectancy, Explained_by_Log_GDP_per_capita, Explained_by_Social_support, Explained_by_Healthy_life_expectancy, Explained_by_Freedom_to_make_life_choices, Explained_by_Generosity, Explained_by_Perceptions_of_corruption, Dystopia_residual, Residual_X in results:
         WHR_dict = {}
         WHR_dict["Country_name"] = Country_name
         WHR_dict["Regional_indicator"] = Regional_indicator
