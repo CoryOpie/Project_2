@@ -56,7 +56,10 @@ def WHR2021():
 
     """Return a list of hairdata"""
     # Query all passengers
-    results = session.query(WHR.Ladder_score, WHR.Generosity, WHR.Explained_by_Log_GDP_per_capita).all()
+    results = session.query(WHR.Country_name, WHR.Regional_indicator, WHR.Ladder_score, WHR.Healthy_life_expectancy, WHR.Explained_by_Log_GDP_per_capita, 
+    WHR.Explained_by_Social_support, WHR.Explained_by_Healthy_life_expectancy, WHR.Explained_by_Freedom_to_make_life_choices,
+    WHR.Explained_by_Generosity, WHR.Explained_by_Perceptions_of_corruption, WHR.Dystopia_residual, WHR.Residual_X
+    ).all()
 
     session.close()
 
@@ -64,9 +67,18 @@ def WHR2021():
     WHR_all = []
     for Ladder_score, Generosity, Explained_by_Log_GDP_per_capita in results:
         WHR_dict = {}
+        WHR_dict["Country_name"] = Country_name
+        WHR_dict["Regional_indicator"] = Regional_indicator
         WHR_dict["Ladder_score"] = Ladder_score
-        WHR_dict["Generosity"] = Generosity
+        WHR_dict["Healthy_life_expectancy"] = Healthy_life_expectancy
         WHR_dict["Explained_by_Log_GDP_per_capita"] = Explained_by_Log_GDP_per_capita
+        WHR_dict["Explained_by_Social_support"] = Explained_by_Social_support
+        WHR_dict["Explained_by_Healthy_life_expectancy"] = Explained_by_Healthy_life_expectancy
+        WHR_dict["Explained_by_Freedom_to_make_life_choices"] = Explained_by_Freedom_to_make_life_choices
+        WHR_dict["Explained_by_Generosity"] = Explained_by_Generosity
+        WHR_dict["Explained_by_Perceptions_of_corruption"] = Explained_by_Perceptions_of_corruption
+        WHR_dict["Dystopia_residual"] = Dystopia_residual
+        WHR_dict["Residual_X"] = Residual_X
         WHR_all.append(WHR_dict)
 
     return jsonify(WHR_all)
