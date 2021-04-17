@@ -1,3 +1,26 @@
+d3.json("/api/v1.0/Correlation").then(function(CorrData){
+  console.log(CorrData);
+
+  
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
 
 d3.json("/api/v1.0/WHR2021").then(function(WHRData) {
 

@@ -21,6 +21,7 @@ Base.prepare(engine, reflect=True)
 
 # Save reference to the table
 WHR = Base.classes.WHR2021
+
 # Region = Base.classes.Region_Happiness
 
 #################################################
@@ -67,16 +68,31 @@ def bottom5_page():
 #   return sv_reader
 
 #----------------------Correlation Matrix attempt
+
+
 @app.route("/api/v1.0/Correlation")
 def Correlation():
       session = Session(engine)
 
       corr = session.query(WHR.Ladder_score, WHR.Explained_by_Log_GDP_per_capita, WHR.Explained_by_Social_support, WHR.Explained_by_Healthy_life_expectancy, WHR.Explained_by_Freedom_to_make_life_choices, WHR.Explained_by_Generosity, WHR.Explained_by_Perceptions_of_corruption, WHR.Dystopia_residual).all()
 
+      session.close()
+
       matrix_df = pd.DataFrame(corr)
       matrix = matrix_df.corr()
 
+      return jsonify(matrix)
 
+# @app.route("/api/v1.0/Region")
+# def Region():
+#       session = Session(engine)
+
+#       region_score = session.query(Region.Regional_indicator, Region.Happiness_score)
+
+
+@app.route("/map")
+def map_page():
+  return render_template("map.html")
 #---------------------------------
 # API
 #---------------------------------
@@ -85,7 +101,7 @@ def WHR2021():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of hairdata"""
+
        # Query all passengers
     results = session.query(WHR.Country_name, WHR.Regional_indicator, WHR.Ladder_score, WHR.Healthy_life_expectancy, WHR.Explained_by_Log_GDP_per_capita, 
     WHR.Explained_by_Social_support, WHR.Explained_by_Healthy_life_expectancy, WHR.Explained_by_Freedom_to_make_life_choices,
