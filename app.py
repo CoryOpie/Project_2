@@ -18,11 +18,11 @@ engine = create_engine("sqlite:///data/SQLProject2.db")
 Base = automap_base()
 # reflect the tables
 Base.prepare(engine, reflect=True)
-
+print(Base.classes.keys())
 # Save reference to the table
 WHR = Base.classes.WHR2021
 
-# Region = Base.classes.Region_Happiness
+Region = Base.classes.Region_Happiness
 
 #################################################
 # Flask Setup
@@ -79,15 +79,17 @@ def Correlation():
       session.close()
 
       matrix_df = pd.DataFrame(corr)
-      matrix = matrix_df.corr()
+    
+      matrix = matrix_df.corr().values.tolist()
+      # print(matrix)
 
       return jsonify(matrix)
 
-# @app.route("/api/v1.0/Region")
-# def Region():
-#       session = Session(engine)
+@app.route("/api/v1.0/Region")
+def Region():
+      session = Session(engine)
 
-#       region_score = session.query(Region.Regional_indicator, Region.Happiness_score)
+      region_score = session.query(Region.Regional_indicator, Region.Happiness_score)
 
 
 @app.route("/map")
