@@ -5,8 +5,9 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
-from flask import Flask, jsonify, render_template
-
+from flask import Flask, jsonify, render_template,request
+import csv
+from io import TextIOWrapper
 
 #################################################
 # Database Setup
@@ -27,7 +28,7 @@ WHR = Base.classes.WHR2021
 app = Flask(__name__)
 
 
-#################################################
+################################################
 # Flask Routes
 #################################################
 
@@ -37,7 +38,9 @@ app = Flask(__name__)
 #---------------------------------
 @app.route("/")
 def home():
-
+  # csv_file = request.files['coordinates.csv']
+  # csv_file = TextIOWrapper(csv_file, encoding='utf-8')
+  # sv_reader = csv.reader(csv_file, delimiter=',')
   return render_template("index.html")
 
 @app.route("/data")
@@ -45,6 +48,22 @@ def data_page():
 
   return render_template("data.html")
 
+@app.route("/top5.html")
+def top5_page():
+
+  return render_template("top5.html")
+
+@app.route("/bottom5.html")
+def bottom5_page():
+
+  return render_template("bottom5.html")
+
+# @app.route("/csv")
+# def csv():
+#   csv_file = request.files['coordinates.csv']
+#   csv_file = TextIOWrapper(csv_file, encoding='utf-8')
+#   sv_reader = csv.reader(csv_file, delimiter=',')
+#   return sv_reader
 
 #---------------------------------
 # API
@@ -54,13 +73,13 @@ def WHR2021():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of World Happiness Report"""
-    # Query all passengers
+    """Return a list of hairdata"""
+       # Query all passengers
     results = session.query(WHR.Country_name, WHR.Regional_indicator, WHR.Ladder_score, WHR.Healthy_life_expectancy, WHR.Explained_by_Log_GDP_per_capita, 
     WHR.Explained_by_Social_support, WHR.Explained_by_Healthy_life_expectancy, WHR.Explained_by_Freedom_to_make_life_choices,
     WHR.Explained_by_Generosity, WHR.Explained_by_Perceptions_of_corruption, WHR.Dystopia_residual, WHR.Residual_X
     ).all()
-
+    
     session.close()
 
     # Create a dictionary from the row data and append to a list of all_passengers
@@ -82,7 +101,6 @@ def WHR2021():
         WHR_all.append(WHR_dict)
 
     return jsonify(WHR_all)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
