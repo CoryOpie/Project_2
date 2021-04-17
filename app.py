@@ -18,7 +18,7 @@ engine = create_engine("sqlite:///data/SQLProject2.db")
 Base = automap_base()
 # reflect the tables
 Base.prepare(engine, reflect=True)
-print(Base.classes.keys())
+# print(Base.classes.keys())
 # Save reference to the table
 WHR = Base.classes.WHR2021
 
