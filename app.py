@@ -1,5 +1,5 @@
 import numpy as np
-
+import pandas as pd
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -21,6 +21,7 @@ Base.prepare(engine, reflect=True)
 
 # Save reference to the table
 WHR = Base.classes.WHR2021
+# Region = Base.classes.Region_Happiness
 
 #################################################
 # Flask Setup
@@ -64,6 +65,17 @@ def bottom5_page():
 #   csv_file = TextIOWrapper(csv_file, encoding='utf-8')
 #   sv_reader = csv.reader(csv_file, delimiter=',')
 #   return sv_reader
+
+#----------------------Correlation Matrix attempt
+@app.route("/api/v1.0/Correlation")
+def Correlation():
+      session = Session(engine)
+
+      corr = session.query(WHR.Ladder_score, WHR.Explained_by_Log_GDP_per_capita, WHR.Explained_by_Social_support, WHR.Explained_by_Healthy_life_expectancy, WHR.Explained_by_Freedom_to_make_life_choices, WHR.Explained_by_Generosity, WHR.Explained_by_Perceptions_of_corruption, WHR.Dystopia_residual).all()
+
+      matrix_df = pd.DataFrame(corr)
+      matrix = matrix_df.corr()
+
 
 #---------------------------------
 # API

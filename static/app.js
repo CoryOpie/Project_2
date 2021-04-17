@@ -21,7 +21,7 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Import Data
-d3.json("/api/v1.0/WHRData").then(function(WHRData) {
+d3.json("/api/v1.0/WHR2021").then(function(WHRData) {
 
     // Step 1: Parse Data/Cast as numbers
     // ==============================
