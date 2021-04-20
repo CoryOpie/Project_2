@@ -1,38 +1,88 @@
-// Create a map using Leaflet that plots all of the scores from your data set based on their longitude and latitude.
 
+// Store our API endpoint at a variable
+var queryUrl = "/static/countries.geojson"
 
-// Store our API endpoint as queryUrl
-var queryUrl = "http://inmagik.github.io/world-countries/countries/ITA.geojson"
-//https://services.arcgis.com/B7NI2jUD81lCgSpx/arcgis/rest/services/Assignment_6_Spatial_Reference_Systems/FeatureServer/1/query?where=1%3D1&outFields=*&outSR=4326&f=json"
-//var queryUrl =  "/api/v1.0/WHR2021";
+var happinessdata =  "/api/v1.0/WHR2021";
 
 API_KEY = "pk.eyJ1IjoiamVzc2ljYWNvdmV5IiwiYSI6ImNrbXpzNzJ2MDBndmEybm1scmZjemloMjMifQ.R-FBc6ICA2ND1KzQSpz34g"
 
-// Perform a GET request to the query URL
-//d3.json(queryUrl, function(data) {
-d3.json(queryUrl).then(function(data) {
-    console.log(data);
+//create a function to 
+function getColor (Ladder, geodata) {
+  console.log (Ladder)
+  console.log(geodata)
 
-    var happiness = L.geoJSON(data)
-    // var happiness = L.geoJSON(data.features, {
-    //     // onEachFeature: onEachFeature,
-    //     pointToLayer: function (feature, latlng) {
-    //       return L.circleMarker(latlng);
-    //     },
-    //     style: function(feature) {
-    //       return {
-    //         "color": "white",
-    //         "fillOpacity": 1,
-    //         "fillColor": "blue",//getColor(feature.properties.mag),
-    //         "weight": 5,
-    //         "radius": 5,
-    //         "opacity": 0.65    
-    //       }
-    //     }  
-    //   })
-    //   feature.properties.happiness * 5
-    // Define streetmap and darkmap layers
-  var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  filterdata = geodata.filter(p => p.Country_name == Ladder)
+
+  //if the geodata country name and the WHR country name do not match color it white
+  if (filterdata.length == 0)
+    return "white"
+
+  filterdata = filterdata[0]
+  console.log(filterdata)
+
+  var ladderdata = filterdata["Ladder_score"]
+
+  if (ladderdata > 7.5 )
+    return "green"
+
+  if (ladderdata > 7.0 )
+    return "green"
+
+  if (ladderdata > 6.5 )
+    return "limegreen"
+
+  if (ladderdata > 6.0 )
+    return "lime"
+
+  if (ladderdata > 5.5 )
+    return "yellowgreen"
+
+  if (ladderdata > 5.0 )
+    return "greenyellow"
+
+  if (ladderdata > 4.5 )
+    return "gold"
+
+  if (ladderdata > 4.0 )
+    return "yellow"
+
+  if (ladderdata > 3.5)
+    return "orange"
+
+  if (ladderdata > 3.0 )
+    return "darkorange"
+
+  if (ladderdata > 2.5 )
+    return "orangered"
+
+  else if (ladderdata <= 2.0)
+    return "red" 
+}
+d3.json(happinessdata).then(function(happydata) {
+    console.log(happydata)
+ 
+d3.json(queryUrl).then(function(data) {
+    console.log(data)
+
+    var happiness = L.geoJSON(data, {
+        // onEachFeature: onEachFeature,
+        // pointToLayer: function (feature, latlng) {
+        //   return L.circleMarker(latlng);
+        // },
+        style: function(feature) {
+          return {
+            "color": "white",
+            "fillOpacity": 1,
+            "fillColor": getColor(feature.properties.ADMIN, happydata), 
+            "weight": 5,
+            "radius": 5,
+            "opacity": 0.65    
+          }
+        }  
+      })
+
+    // Define lightmap and darkmap layers
+  var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
     maxZoom: 18,
@@ -50,7 +100,7 @@ d3.json(queryUrl).then(function(data) {
 
      // Define a baseMaps object to hold our base layers
   var baseMaps = {
-    "Street Map": streetmap,
+    "Street Map": lightmap,
     "Dark Map": darkmap
   };
 
@@ -61,20 +111,21 @@ d3.json(queryUrl).then(function(data) {
       // Create a new map
   var myMap = L.map("map", {
     center: [
-      37.09, -95.71
+      29.4856, -17.539
     ],
-    zoom: 5,
-    layers: [streetmap, darkmap]
+    zoom: 1.85,
+    layers: [darkmap, happiness]
   });
 
   // Create a layer control containing our baseMaps
-  // Be sure to add an overlay Layer containing the earthquake GeoJSON
+  // Be sure to add an overlay Layer containing the GeoJSON data
   L.control.layers(baseMaps, overlayMaps, 
     {
     collapsed: false
   }).addTo(myMap);
 
 });
+})
 
     // function onEachFeature(feature, layer) {
     //     layer.bindPopup(`${feature.properties.place}<hr>Magnitude: ${feature.properties.mag}<br>Depth: ${feature.geometry.coordinates[2]}`);
