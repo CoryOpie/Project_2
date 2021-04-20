@@ -10,8 +10,28 @@ d3.json("/api/v1.0/Correlation").then(function(CorrData){
     type: 'heatmap'
   }
 ];
+var layout = {
+  autosize: false,
+  width: 600,
+  height: 600,
+  yaxis: {
+    tickvals: [0,1, 2, 3, 4, 5, 6, 7],
+    tickmode: 'array',
+    automargin: true,
+    titlefont: { size:30 },
+  },
+  xaxis: {
+    tickvals: [0,1, 2, 3, 4, 5, 6, 7],
+    tickmode: 'array',
+    automargin: true,
+    titlefont: { size:30 },
+  },
+  paper_bgcolor: '#7f7f7f',
+  plot_bgcolor: '#c7c7c7'
+};
+Plotly.newPlot('myDiv', data, layout);
 
-Plotly.newPlot('myDiv', data);
+
 
 // var xValues = ["Happiness Score",	"GDP per Capita",	"Social Support",	"Healthy Life Expectancy",	"Freedom to make life choices",	"Generosity",	"Perception of Corruption",	"Dystopia + Residual Score"];
 
