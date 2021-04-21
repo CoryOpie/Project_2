@@ -1,9 +1,41 @@
-/* body {
+/* .tooltip {
+  position: absolute;
+  width: 135px;
+  height: 60px;
+  padding: 2px;
+  padding-top: 8px;
+  font: 12px sans-serif;
+  color: white;
+  text-align: center;
+  background: #551aaf;
+  border: 0;
+  border-radius: 10px;
+}
+
+.axisText {
+  font-family: sans-serif;
+  font-weight: bold;
+  fill: #551aaf;
+  text-anchor: middle;
+} */
+body{
+  background-color:	#ffffff;
   padding: 0;
   margin: 0;
 }
 
-#map,
+p{
+  font: 1em sans-serif;
+  font-size: 20px;
+}
+
+#map {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 8px;
+  height: 700px;  /* or as desired */
+  width: 100%;  /* This means "100% of the width of its container", the .col-md-8 */
+}
 body,
 html {
   height: 100%;
@@ -43,4 +75,4 @@ html {
 
 h1 {
   text-align: center;
-} */
+}

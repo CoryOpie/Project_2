@@ -28,8 +28,8 @@ var layout = {
     automargin: true,
     titlefont: { size:20 },
   },
-  paper_bgcolor: '#a9a9a9',
-  plot_bgcolor: '#a9a9a9'
+  paper_bgcolor: '#ffffff',
+  plot_bgcolor: '#ffffff'
 };
 Plotly.newPlot('myDiv', data, layout);
 
