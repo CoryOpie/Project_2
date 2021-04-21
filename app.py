@@ -50,15 +50,11 @@ def data_page():
 
   return render_template("data.html")
 
-@app.route("/top5.html")
+@app.route("/top5")
 def top5_page():
 
   return render_template("top5.html")
 
-@app.route("/bottom5.html")
-def bottom5_page():
-
-  return render_template("bottom5.html")
 
 # @app.route("/csv")
 # def csv():
@@ -98,7 +94,7 @@ def map_page():
   return render_template("map.html")
 
 
-  
+
 #---------------------------------
 # API
 #---------------------------------
