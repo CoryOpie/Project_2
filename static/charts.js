@@ -418,8 +418,8 @@ d3.json("/api/v1.0/WHR2021").then(function(WHRData) {
     Plotly.newPlot('top5', data, layout);
 
   var trace1 = {
-    y: [Ladder_score[142],Ladder_score[141],Ladder_score[140],Ladder_score[139],Ladder_score[138]],
-    x: [Country_name[142],Country_name[141],Country_name[140],Country_name[139],Country_name[138]],
+    y: [Ladder_score[141],Ladder_score[140],Ladder_score[139],Ladder_score[138],Ladder_score[137]],
+    x: [Country_name[141],Country_name[140],Country_name[139],Country_name[138],Country_name[137]],
     name: 'Happiness Score',
     // type:'scatter',
     // color:'rgb(255, 255, 255)',
@@ -435,45 +435,45 @@ d3.json("/api/v1.0/WHR2021").then(function(WHRData) {
   };
 
   var trace2 = {
-    y: [Explained_by_Log_GDP_per_capita[142],Explained_by_Log_GDP_per_capita[141],Explained_by_Log_GDP_per_capita[140],Explained_by_Log_GDP_per_capita[139],Explained_by_Log_GDP_per_capita[138]],
-    x: [Country_name[142],Country_name[141],Country_name[140],Country_name[139],Country_name[138]],
+    y: [Explained_by_Log_GDP_per_capita[141],Explained_by_Log_GDP_per_capita[140],Explained_by_Log_GDP_per_capita[139],Explained_by_Log_GDP_per_capita[138],Explained_by_Log_GDP_per_capita[137]],
+    x: [Country_name[141],Country_name[140],Country_name[139],Country_name[138],Country_name[137]],
     name: 'LOG GDP per Capita',
     type: 'bar',
   };
   var trace3 = {
-    y: [Dystopia_residual[142],Dystopia_residual[141],Dystopia_residual[140],Dystopia_residual[139],Dystopia_residual[138]],
-    x: [Country_name[142],Country_name[141],Country_name[140],Country_name[139],Country_name[138]],
+    y: [Dystopia_residual[141],Dystopia_residual[140],Dystopia_residual[139],Dystopia_residual[138],Dystopia_residual[137]],
+    x: [Country_name[141],Country_name[140],Country_name[139],Country_name[138],Country_name[137]],
     name: 'Dystopia Residual',
     type: 'bar'  
   };
   var trace4 = {
-    y: [Explained_by_Social_support[142],Explained_by_Social_support[141],Explained_by_Social_support[140],Explained_by_Social_support[139],Explained_by_Social_support[138]],
-    x: [Country_name[142],Country_name[141],Country_name[140],Country_name[139],Country_name[138]],
+    y: [Explained_by_Social_support[141],Explained_by_Social_support[140],Explained_by_Social_support[139],Explained_by_Social_support[138],Explained_by_Social_support[137]],
+    x: [Country_name[141],Country_name[140],Country_name[139],Country_name[138],Country_name[137]],
     name: 'Social Support',
     type: 'bar' 
   };
   var trace5 = {
-    y: [Explained_by_Healthy_life_expectancy[142],Explained_by_Healthy_life_expectancy[141],Explained_by_Healthy_life_expectancy[140],Explained_by_Healthy_life_expectancy[139],Explained_by_Healthy_life_expectancy[138]],
-    x: [Country_name[142],Country_name[141],Country_name[140],Country_name[139],Country_name[138]],
+    y: [Explained_by_Healthy_life_expectancy[141],Explained_by_Healthy_life_expectancy[140],Explained_by_Healthy_life_expectancy[139],Explained_by_Healthy_life_expectancy[138],Explained_by_Healthy_life_expectancy[137]],
+    x: [Country_name[141],Country_name[140],Country_name[139],Country_name[138],Country_name[137]],
     name: 'Healthy Life Expectancy',
     type: 'bar'
   };
   var trace6 = {
-    y: [Explained_by_Freedom_to_make_life_choices[142],Explained_by_Freedom_to_make_life_choices[141],Explained_by_Freedom_to_make_life_choices[140],Explained_by_Freedom_to_make_life_choices[139],Explained_by_Freedom_to_make_life_choices[138]],
-    x: [Country_name[142],Country_name[141],Country_name[140],Country_name[139],Country_name[138]],
+    y: [Explained_by_Freedom_to_make_life_choices[141],Explained_by_Freedom_to_make_life_choices[140],Explained_by_Freedom_to_make_life_choices[139],Explained_by_Freedom_to_make_life_choices[138],Explained_by_Freedom_to_make_life_choices[137]],
+    x: [Country_name[141],Country_name[140],Country_name[139],Country_name[138],Country_name[137]],
     name: 'Freedom To Make Life Choices',
     type: 'bar'
   };
   var trace7 = {
-    y: [Explained_by_Generosity[142],Explained_by_Generosity[141],Explained_by_Generosity[140],Explained_by_Generosity[139],Explained_by_Generosity[138]],
-    x: [Country_name[142],Country_name[141],Country_name[140],Country_name[139],Country_name[138]],
+    y: [Explained_by_Generosity[141],Explained_by_Generosity[140],Explained_by_Generosity[139],Explained_by_Generosity[138],Explained_by_Generosity[137]],
+    x: [Country_name[141],Country_name[140],Country_name[139],Country_name[138],Country_name[137]],
     name: 'Generosity',
     orientation: 'v',
     type: 'bar'
   };
   var trace8 = {
-    y: [Explained_by_Perceptions_of_corruption[142],Explained_by_Perceptions_of_corruption[141],Explained_by_Perceptions_of_corruption[140],Explained_by_Perceptions_of_corruption[139],Explained_by_Perceptions_of_corruption[138]],
-    x: [Country_name[142],Country_name[141],Country_name[140],Country_name[139],Country_name[138]],
+    y: [Explained_by_Perceptions_of_corruption[141],Explained_by_Perceptions_of_corruption[140],Explained_by_Perceptions_of_corruption[139],Explained_by_Perceptions_of_corruption[138],Explained_by_Perceptions_of_corruption[137]],
+    x: [Country_name[141],Country_name[140],Country_name[139],Country_name[138],Country_name[137]],
     name: 'Perceptions of Corruption',
     type: 'bar'
   };
