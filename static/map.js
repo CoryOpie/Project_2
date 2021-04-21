@@ -55,8 +55,11 @@ function getColor (Ladder, geodata) {
   if (ladderdata > 2.5 )
     return "orangered"
 
-  else if (ladderdata <= 2.0)
+  if (ladderdata <= 2.0)
     return "red" 
+  
+  else if(ladderdata)
+    return "purple"
 }
 d3.json(happinessdata).then(function(happydata) {
     console.log(happydata)
