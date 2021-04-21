@@ -4,30 +4,31 @@ d3.json("/api/v1.0/Correlation").then(function(CorrData){
   var data = [
   {
     z: [[1.0, 0.7996180164900025, 0.7653012432368554, 0.7923204043338905, 0.619505363689766, 0.010428804598273883, 0.43135766390674996, 0.5157218545878531], [0.7996180164900025, 1.0, 0.7886483373402697, 0.8599051155145977, 0.44798084580856573, -0.20152141797322556, 0.33571146668763807, 0.0010642490735393395], [0.7653012432368554, 0.7886483373402697, 1.0, 0.7250848832510157, 0.4840563830848691, -0.11685618533243557, 0.20357508902618351, 0.046582772501521326], [0.7923204043338905, 0.8599051155145977, 0.7250848832510157, 1.0, 0.4842452406705684, -0.16494401477549728, 0.3542014055879155, 0.05018184731307821], [0.619505363689766, 0.44798084580856573, 0.4840563830848691, 0.4842452406705684, 1.0, 0.16158820078847036, 0.41287654956551023, 0.12472330436630259], [0.010428804598273883, -0.20152141797322556, -0.11685618533243557, -0.16494401477549728, 0.16158820078847036, 1.0, 0.15946097751780483, 0.0402504169799939], [0.43135766390674996, 0.33571146668763807, 0.20357508902618351, 0.3542014055879155, 0.41287654956551023, 0.15946097751780483, 1.0, 0.037517270856322296], [0.5157218545878531, 0.0010642490735393395, 0.046582772501521326, 0.05018184731307821, 0.12472330436630259, 0.0402504169799939, 0.037517270856322296, 1.0]],
-    // z: [[CorrData[0], CorrData[1]], CorrData[3], CorrData[4], [CorrData[5], CorrData[6]], CorrData[7]],
+    // z: [[CorrData]],
     x: ["Happiness Score",	"GDP per Capita",	"Social Support",	"Healthy Life Expectancy",	"Freedom to make life choices",	"Generosity",	"Perception of Corruption",	"Dystopia + Residual Score"],
     y: ["Happiness Score",	"GDP per Capita",	"Social Support",	"Healthy Life Expectancy",	"Freedom to make life choices",	"Generosity",	"Perception of Corruption",	"Dystopia + Residual Score"],
     type: 'heatmap'
   }
 ];
 var layout = {
+  title : "WHR Correlation Matrix",
   autosize: false,
-  width: 600,
+  width: 800,
   height: 600,
   yaxis: {
-    tickvals: [0,1, 2, 3, 4, 5, 6, 7],
+    tickvals: [0, 1, 2, 3, 4, 5, 6, 7],
     tickmode: 'array',
     automargin: true,
     titlefont: { size:30 },
   },
   xaxis: {
-    tickvals: [0,1, 2, 3, 4, 5, 6, 7],
+    tickvals: [0, 1, 2, 3, 4, 5, 6, 7],
     tickmode: 'array',
     automargin: true,
     titlefont: { size:30 },
   },
-  paper_bgcolor: '#7f7f7f',
-  plot_bgcolor: '#c7c7c7'
+  // paper_bgcolor: '#7f7f7f',
+  // plot_bgcolor: '#c7c7c7'
 };
 Plotly.newPlot('myDiv', data, layout);
 
