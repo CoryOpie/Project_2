@@ -138,7 +138,7 @@ d3.json("/api/v1.0/WHR2021").then(function(WHRData) {
                       columns: [
                           { title: "Country" },
                           { title: "Dystopia + Residual Score" },
-                          { title: "Freedom to make life choices" },
+                          { title: "Freedom to make life choice" },
                           { title: "Generosity" },
                           { title: "Healthy Life Expectancy" },
                           { title: "GDP per Capita" },
